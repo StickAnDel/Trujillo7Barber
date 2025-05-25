@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador - Trujillo 7 Barber</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Panel de Administrador</h1>
+        <nav>
+            <ul>
+                <li><a href="#" id="logout">Cerrar Sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="admin-container">
+        <section class="admin-section">
+            <h2>Reservas Activas</h2>
+            <div class="reservations-list" id="active-reservations">
+                <!-- Las reservas activas se cargarán aquí -->
+            </div>
+        </section>
+
+        <section class="admin-section">
+            <h2>Gestión de Servicios</h2>
+            <div class="services-management">
+                <h3>Agregar Nuevo Servicio</h3>
+                <form id="add-service-form">
+                    <div class="form-group">
+                        <label for="service-name">Nombre del Servicio:</label>
+                        <input type="text" id="service-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service-price">Precio:</label>
+                        <input type="number" id="service-price" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="service-image">URL de la Imagen:</label>
+                        <input type="text" id="service-image" required>
+                    </div>
+                    <button type="submit" class="btn">Agregar Servicio</button>
+                </form>
+
+                <h3>Servicios Existentes</h3>
+                <div class="services-list" id="admin-services-list">
+                    <!-- Los servicios existentes se cargarán aquí -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Trujillo 7 Barber. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/database.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
