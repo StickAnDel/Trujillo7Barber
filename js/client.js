@@ -59,7 +59,7 @@ function loadServicesForReservation() {
         serviceOption.innerHTML = `
             <img src="${service.image}" alt="${service.name}">
             <h3>${service.name}</h3>
-            <p class="price">$${service.price}</p>
+            <p class="price">S/${service.price}</p>
             <input type="radio" name="service" value="${service.id}" required>
         `;
         

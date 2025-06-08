@@ -19,7 +19,7 @@ function loadServices() {
             <img src="${service.image}" alt="${service.name}">
             <div class="service-info">
                 <h3>${service.name}</h3>
-                <p class="price">$${service.price}</p>
+                <p class="price">S/${service.price}</p>
             </div>
         `;
         servicesContainer.appendChild(serviceCard);

@@ -167,7 +167,7 @@ footer {
 
 /* Estilos para la sección hero */
 .hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://scontent.flim14-1.fna.fbcdn.net/v/t39.30808-6/469228991_1873860016476885_735478447094705529_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeElRUBZ2QQK2GeARDmogsF3P9NTnOOc3dY_01Oc45zd1qUko9mUWQ2izXOJDLnemu4zms9um745a_KS-fdfWKJF&_nc_ohc=oVhzeiD5Q6AQ7kNvwGOJg4U&_nc_oc=Admc1jYwPdeI4q2wjgb8AiP9Va8F_Ye4KSCcMF_d9oQa4o2RJwikiakmzrL-XouqiNk&_nc_zt=23&_nc_ht=scontent.flim14-1.fna&_nc_gid=edJej818xSok1daUJEBhBQ&oh=00_AfJh2M-31EuA56p-6uxLUjGHW6-QWQi8xy18g02VBog9Jg&oe=68392397');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/fondo-barberia.jpg');
     background-size: cover;
     background-position: center;
     color: #fff;
