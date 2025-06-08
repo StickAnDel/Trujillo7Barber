@@ -250,3 +250,56 @@ footer {
     margin-top: 0.5rem;
     font-size: 0.9rem;
 }
+/* ===== EFECTO 3D ===== */
+.modal-3d {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-poster-3d {
+    height: 50vh; /* Cambiado de 60vh a 50vh para ver más lejos */
+    width: 70vw;  /* Reducido de 80vw */
+    max-width: 500px;
+    background-size: contain; /* Cambiado de 'cover' a 'contain' para ver imagen completa */
+    background-position: center;
+    transition: transform 0.1s;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255,165,0,0.6);
+    background-color: #000; /* Fondo negro para espacios vacíos */
+}
+
+.close-modal-3d {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.service-info-modal {
+    background: rgba(26,26,26,0.8);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+}
+.service-info-modal h3,
+.service-info-modal .price-modal {
+    color: #FFD700 !important; /* Amarillo dorado para nombre Y precio */
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    margin: 5px 0;
+}
