@@ -57,6 +57,14 @@ footer {
     margin-top: 2rem;
 }
 
+.login-page footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0; 
+}
+
 .btn {
     display: inline-block;
     background: #9b8508;
