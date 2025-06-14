@@ -3,62 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Administrador - Trujillo 7 Barber</title>
+    <title>Panel de Administrador – Trujillo 7 Barber</title>
+
+    <!-- Estilos propios -->
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Iconos Font‑Awesome (para los íconos del dashboard) -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
-    <header>
-        <h1>Panel de Administrador</h1>
-        <nav>
-            <ul>
-                <li><a href="#" id="logout">Cerrar Sesión</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <h1>Panel de Administrador</h1>
+    <nav>
+        <ul>
+            <li><a href="#" id="logout">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <main class="admin-container">
-        <section class="admin-section">
-            <h2>Reservas Activas</h2>
-            <div class="reservations-list" id="active-reservations">
-                <!-- Las reservas activas se cargarán aquí -->
+<main class="admin-container">
+
+    <!-- DASHBOARD ----------------------------------------------------->
+    <section class="admin-section dashboard">
+        <h2>Dashboard</h2>
+
+        <div class="dashboard-cards">
+            <div class="dashboard-card services-card" id="card-services">
+                <i class="fas fa-cut"></i>
+                <h3>Servicios</h3>
+                <p id="count-services">0</p>
             </div>
-        </section>
 
-        <section class="admin-section">
-            <h2>Gestión de Servicios</h2>
-            <div class="services-management">
-                <h3>Agregar Nuevo Servicio</h3>
-                <form id="add-service-form">
-                    <div class="form-group">
-                        <label for="service-name">Nombre del Servicio:</label>
-                        <input type="text" id="service-name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="service-price">Precio (S/):</label>
-                        <input type="number" id="service-price" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="service-image">URL de la Imagen:</label>
-                        <input type="text" id="service-image" required>
-                    </div>
-                    <button type="submit" class="btn">Agregar Servicio</button>
-                </form>
+            <div class="dashboard-card active-card" id="card-active-reservations">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Reservas Activas</h3>
+                <p id="count-active">0</p>
+            </div>
 
-                <h3>Servicios Existentes</h3>
-                <div class="services-list" id="admin-services-list">
-                    <!-- Los servicios existentes se cargarán aquí -->
+            <div class="dashboard-card completed-card" id="card-completed-reservations">
+                <i class="fas fa-check-circle"></i>
+                <h3>Reservas Completadas</h3>
+                <p id="count-completed">0</p>
+            </div>
+
+            <div class="dashboard-card users-card" id="card-users">
+                <i class="fas fa-users"></i>
+                <h3>Usuarios</h3>
+                <p id="count-users">0</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESERVAS ------------------------------------------------------->
+    <section class="admin-section">
+        <h2>Reservas Activas</h2>
+
+        <!-- Filtro por estado -->
+        <label for="filter-status">Filtrar:</label>
+        <select id="filter-status">
+            <option value="all">Todas</option>
+            <option value="pending">Pendientes</option>
+            <option value="late">Atrasadas</option>
+        </select>
+
+        <div class="reservations-list" id="active-reservations">
+            <!-- Se cargan con JS -->
+        </div>
+    </section>
+
+    <!-- SERVICIOS ------------------------------------------------------>
+    <section class="admin-section">
+        <h2>Gestión de Servicios</h2>
+
+        <div class="services-management">
+            <h3>Agregar Nuevo Servicio</h3>
+            <form id="add-service-form">
+                <div class="form-group">
+                    <label for="service-name">Nombre:</label>
+                    <input type="text" id="service-name" required>
                 </div>
+                <div class="form-group">
+                    <label for="service-price">Precio (S/):</label>
+                    <input type="number" id="service-price" required>
+                </div>
+                <div class="form-group">
+                    <label for="service-image">URL de la Imagen:</label>
+                    <input type="text" id="service-image" required>
+                </div>
+                <button type="submit" class="btn">Agregar</button>
+            </form>
+
+            <h3>Servicios Existentes</h3>
+            <div class="services-list" id="admin-services-list">
+                <!-- Se cargan con JS -->
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
-    <footer>
-        <p>&copy; 2025 Trujillo 7 Barber. Todos los derechos reservados.</p>
-    </footer>
+<footer>
+    <p>&copy; 2025 Trujillo 7 Barber. Todos los derechos reservados.</p>
+</footer>
 
-    <script src="js/database.js"></script>
-    <script src="js/auth.js"></script>
-    <script src="js/admin.js"></script>
+<!-- Scripts -->
+<script src="js/database.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/admin.js"></script>
 </body>
 </html>

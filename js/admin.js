@@ -1,24 +1,57 @@
-// Funcionalidades del administrador
-document.addEventListener('DOMContentLoaded', function() {
-    // Verificar autenticación y rol
-    const user = JSON.parse(localStorage.getItem('currentUser'));
-    if (!user || user.role !== 'admin') {
+// -------------------------------------------------------------
+//  Funciones del panel de administrador  –  Trujillo 7 Barber
+// -------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+    /* 1) Comprobar rol */
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (!currentUser || currentUser.role !== 'admin') {
         window.location.href = 'login.html';
         return;
     }
-    
-    // Cargar reservas activas
-    loadActiveReservations();
-    
-    // Cargar servicios existentes
+
+    /* 2) Cargar información inicial */
+    loadDashboard();
+    loadActiveReservations();      // Filtro 'all' por defecto
     loadServicesForAdmin();
-    
-    // Manejar formulario para agregar nuevo servicio
-    const addServiceForm = document.getElementById('add-service-form');
-    if (addServiceForm) {
-        addServiceForm.addEventListener('submit', handleAddService);
-    }
+
+    /* 3) Listener: agregar nuevo servicio */
+    const addForm = document.getElementById('add-service-form');
+    addForm?.addEventListener('submit', handleAddService);
+
+    /* 4) Listener: filtro de reservas */
+    document.getElementById('filter-status')
+            .addEventListener('change', e => loadActiveReservations(e.target.value));
 });
+
+/* ---------- Dashboard ------------------------------------------------ */
+function animateCount(el, end) {
+    let start = 0;
+    const step = Math.ceil(end / 40);
+    const tick = () => {
+        start += step;
+        if (start < end) {
+            el.textContent = start;
+            requestAnimationFrame(tick);
+        } else {
+            el.textContent = end;
+        }
+    };
+    requestAnimationFrame(tick);
+}
+
+function loadDashboard() {
+    const services     = db.getServices();
+    const reservations = db.getAllReservations();
+    const users        = db.getAllUsers();
+
+    const active   = reservations.filter(r => r.status === 'pending' || r.status === 'late').length;
+    const completed= reservations.filter(r => r.status === 'completed').length;
+
+    animateCount(document.getElementById('count-services'),   services.length);
+    animateCount(document.getElementById('count-active'),     active);
+    animateCount(document.getElementById('count-completed'),  completed);
+    animateCount(document.getElementById('count-users'),      users.length);
+}
 
 function loadActiveReservations() {
     const reservationsContainer = document.getElementById('active-reservations');
