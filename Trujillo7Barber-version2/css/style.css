@@ -1,0 +1,340 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-image: url('../images/Barberiafondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Fondo fijo al desplazar */
+}
+
+header {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.8rem;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 1.5rem;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #f0c14b;
+}
+
+main {
+    padding: 2rem;
+}
+
+footer {
+    background: #1a1a1a;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.login-page footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top: 0; 
+}
+
+.btn {
+    display: inline-block;
+    background: #9b8508;
+    color: #fff;
+    padding: 0.5rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn:hover {
+    background: #555;
+}
+
+/* Estilos para formularios */
+.auth-container {
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.auth-form h2 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Estilos para la sección de servicios */
+.services {
+    margin: 2rem 0;
+}
+
+.services h2 {
+    text-align: center;
+    background: #1a1a1a; /* Fondo negro */
+    color: #f0c14b; /* Texto dorado */
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    margin-bottom: 2rem !important;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.service-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+}
+
+.service-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;  /* Cambia "cover" por "contain" */
+    background: #0b0b0b;  /* Color de fondo para espacios vacíos */
+    border-radius: 8px;   /* Bordes redondeados */
+}
+
+.service-info {
+    padding: 1rem;
+}
+
+.service-info h3 {
+    margin-bottom: 0.5rem;
+}
+
+.service-info .price {
+    font-weight: bold;
+    color: #e67e22;
+}
+
+/* Estilos para la sección hero */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../images/fondo-barberia.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 5rem 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Estilos para la sección de horarios */
+.hours {
+    background: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid #f0c14b; /* Borde dorado */
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.hours h2 {
+    color: #1a1a1a; /* Texto negro */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    background: #f0c14b; /* Fondo dorado */
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    border-radius: 30px;
+    margin-bottom: 1.5rem;
+    
+}
+
+.hours ul li {
+    background: rgba(240, 193, 75, 0.2); /* Fondo dorado claro */
+    color: #1a1a1a;
+    font-weight: bold;
+    margin-bottom: 0.8rem;
+    padding: 0.8rem;
+    border-radius: 4px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+.modal-content h2, .modal-content p{
+    text-align: center;
+}
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* Mensajes de error */
+.error-message {
+    color: #e74c3c;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+/* ===== EFECTO 3D ===== */
+.modal-3d {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-poster-3d {
+    height: 50vh; /* Cambiado de 60vh a 50vh para ver más lejos */
+    width: 70vw;  /* Reducido de 80vw */
+    max-width: 500px;
+    background-size: contain; /* Cambiado de 'cover' a 'contain' para ver imagen completa */
+    background-position: center;
+    transition: transform 0.1s;
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(255,165,0,0.6);
+    background-color: #000; /* Fondo negro para espacios vacíos */
+}
+
+.close-modal-3d {
+    position: absolute;
+    top: 40px;
+    right: 50px;
+    color: white;
+    font-size: 70px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1001;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5); /* Opcional: sombra para mejor visibilidad */
+}
+
+.service-info-modal {
+    background: rgba(26,26,26,0.8);
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+}
+.service-info-modal h3,
+.service-info-modal .price-modal {
+    color: #FFD700 !important; /* Amarillo dorado para nombre Y precio */
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+    margin: 5px 0;
+}
+/* CENTRAR SOLO "NUESTROS SERVICIOS" */
+.services h2 {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* CENTRAR SOLO "HORARIOS DE ATENCIÓN" */
+.hours h2 {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
