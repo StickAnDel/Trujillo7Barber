@@ -64,31 +64,26 @@ function checkAuth() {
 
 async function handleLogin(e) {
     e.preventDefault();
-
+    
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    try {
-        const response = await fetch('http://127.0.0.1:5000/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                username: email,
-                password: password
-            })
-        });
+    // Busca al usuario en tu "base de datos" simulada (database.js)
+    const user = db.findUserByEmail(email);
 
-        const result = await response.json();
+    if (!user || user.password !== password) {
+        alert('Usuario o contraseña incorrectos');
+        return;
+    }
 
-        if (response.ok) {
-            localStorage.setItem('currentUser', JSON.stringify({ username: email, role: 'client' }));
-            window.location.href = 'client.html';
-        } else {
-            alert(result.message);
-        }
-    } catch (err) {
-        console.error(err);
-        alert('Error al iniciar sesión');
+    // Guarda el usuario en localStorage
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    
+    // Redirige según su rol
+    if (user.role === 'admin') {
+        window.location.href = 'admin.html';
+    } else {
+        window.location.href = 'client.html';
     }
 }
 

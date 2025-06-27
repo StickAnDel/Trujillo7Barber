@@ -2,6 +2,16 @@
 
 // Simulación de base de datos
 const database = {
+    users: [
+        {
+            id: 1,
+            name: "Administrador",
+            email: "admin@barber.com",
+            password: "123456", // Esto es solo para desarrollo!
+            role: "admin",
+            phone: "999888777"
+        }
+    ],
 
     services: [
         {

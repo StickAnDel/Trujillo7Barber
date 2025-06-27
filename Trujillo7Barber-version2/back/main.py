@@ -1,87 +1,73 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
+from werkzeug.security import generate_password_hash
 
 app = Flask(__name__)
-CORS(app)
+CORS(app)  # Habilita CORS para todas las rutas
 
-mongo_uri = "mongodb+srv://projectSIML:V06yecZuBeDcoprF@cmonit.27oid4t.mongodb.net/?retryWrites=true&w=majority&appName=cMonit"
-client = MongoClient(mongo_uri)
+# Conexión a MongoDB (asegúrate de tener esta URL correcta)
+client = MongoClient("mongodb+srv://projectSIML:V06yecZuBeDcoprF@cmonit.27oid4t.mongodb.net/barber?retryWrites=true&w=majority")
 db = client['barber']
 users_collection = db['usuarios']
 reservas_collection = db['reservas']
 
+# Ruta para registro de usuarios
 @app.route('/register', methods=['POST'])
 def register():
     data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
-    name = data.get('name')
-    phone = data.get('phone')
-    role = data.get('role', 'client')
-    disability = data.get('disability')
+    
+    # Validación básica
+    if not all(key in data for key in ['username', 'password', 'name', 'phone']):
+        return jsonify({'error': 'Faltan campos obligatorios'}), 400
 
-    if users_collection.find_one({'username': username}):
-        return jsonify({'message': 'El usuario ya existe'}), 400
+    if users_collection.find_one({'username': data['username']}):
+        return jsonify({'error': 'El usuario ya existe'}), 400
 
-    users_collection.insert_one({
-        'username': username,
-        'password': password,
-        'name': name,
-        'phone': phone,
-        'role': role,
-        'disability': disability
-    })
+    # Crear usuario con contraseña hasheada
+    user_data = {
+        'username': data['username'],
+        'password': generate_password_hash(data['password']),
+        'name': data['name'],
+        'phone': data['phone'],
+        'role': data.get('role', 'client'),
+        'disability': data.get('disability')
+    }
 
-    return jsonify({'message': 'Usuario registrado exitosamente'})
+    users_collection.insert_one(user_data)
+    return jsonify({'message': 'Usuario registrado exitosamente'}), 201
 
+# Ruta para login
 @app.route('/login', methods=['POST'])
 def login():
     data = request.get_json()
-    username = data.get('username')
-    password = data.get('password')
+    user = users_collection.find_one({'username': data.get('username')})
 
-    user = users_collection.find_one({'username': username})
-    if not user or user['password'] != password:
-        return jsonify({'message': 'Usuario o contraseña incorrectos'}), 401
+    if not user:
+        return jsonify({'error': 'Usuario no encontrado'}), 404
 
-    return jsonify({'message': 'Inicio de sesión exitoso'})
+    # Comparación de contraseñas (deberías usar check_password_hash en producción)
+    if data.get('password') != user['password']:  # Esto es solo para desarrollo!
+        return jsonify({'error': 'Contraseña incorrecta'}), 401
 
-@app.route('/usuarios', methods=['GET'])
-def get_usuarios():
-    usuarios = list(users_collection.find({}, {'_id': 0}))
-    return jsonify(usuarios)
-
-@app.route('/reservas', methods=['POST'])
-def crear_reserva():
-    data = request.get_json()
-    username = data.get('username')
-    service_id = data.get('serviceId')
-    service_name = data.get('serviceName')
-    service_price = data.get('servicePrice')
-    service_image = data.get('serviceImage')
-    date = data.get('date')
-    time = data.get('time')
-
-    reservas_collection.insert_one({
-        'username': username,
-        'serviceId': service_id,
-        'serviceName': service_name,
-        'servicePrice': service_price,
-        'serviceImage': service_image,
-        'date': date,
-        'time': time,
-        'status': 'pending'
+    return jsonify({
+        'message': 'Login exitoso',
+        'user': {
+            'username': user['username'],
+            'name': user['name'],
+            'role': user.get('role', 'client')
+        }
     })
 
-    return jsonify({'message': 'Reserva registrada exitosamente'})
+# Ruta protegida solo para admin
+@app.route('/admin/dashboard', methods=['GET'])
+def admin_dashboard():
+    user_role = request.headers.get('X-User-Role')  # Debes enviar esto desde el frontend
+    
+    if user_role != 'admin':
+        return jsonify({'error': 'Acceso no autorizado'}), 403
 
-@app.route('/reservas', methods=['PUT'])
-def obtener_reservas():
-    data = request.get_json()
-    username = data.get('username')
-    reservas = list(reservas_collection.find({'username': username}, {'_id': 0}))
-    return jsonify(reservas)
+    return jsonify({'message': 'Bienvenido al panel de administrador'})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

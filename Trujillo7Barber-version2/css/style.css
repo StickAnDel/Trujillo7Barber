@@ -338,3 +338,12 @@ footer {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* <-- NUEVO: Ajustes para móviles */
+@media (max-width: 768px) {
+    header { flex-direction: column; }
+    nav ul { justify-content: center; }
+}
+@media (max-width: 480px) {
+    .service-card { width: 100%; }
+}
